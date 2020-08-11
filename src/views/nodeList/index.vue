@@ -1094,7 +1094,7 @@ export default {
           this.serviceItemList.forEach(i=>{
               if(i.id == v.carwashId){
                 i.carwashsTypes.forEach(t=>{
-                  if(t.ids == v.carwashsId){
+                  if(t.id == v.carwashsId){
                     t.price = v.price
                   }
                 })
@@ -1102,6 +1102,7 @@ export default {
           })
         })
       }
+      this.apiFindMechanismName()
       findYuyueCityByProvinceid({provinceid: item.provinceId}).then(res=>{
         this.cityList = res.data
       })

@@ -5,7 +5,12 @@
        <div class="input_box">
          <el-input
           v-model="queryList.orderno"
-          placeholder="请输入订单号"
+          placeholder="请输入渠道订单号"
+          class="input fl"
+          @keyup.enter.native="handleFilter"/>
+           <el-input
+          v-model="queryList.ytorderno"
+          placeholder="请输入服务商订单号"
           class="input fl"
           @keyup.enter.native="handleFilter"/>
           <el-input
@@ -61,9 +66,19 @@
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="订单号" prop="totalOrderno" fixed align="center">
+      <el-table-column label="渠道订单号" prop="totalOrderno" fixed align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.totalOrderno }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="对接订单号" prop="orderno" fixed align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.orderno }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="服务商订单号" prop="ytorderno" fixed align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.ytorderno }}</span>
         </template>
       </el-table-column>
       <el-table-column label="用户姓名" prop="bindMemName" fixed align="center">
@@ -157,7 +172,8 @@ export default {
         cardno: null,
         usetypeid: null,
         typeid: null,
-        orderno: null
+        orderno: null,
+        ytorderno: null,
       },
       statusList: [
         {
@@ -249,6 +265,9 @@ export default {
       this.loading = true
       let data = {}
       var queryList = this.queryList
+      if (queryList.ytorderno) {
+        data.ytorderno = queryList.ytorderno
+      }
       if (queryList.cardno) {
         data.cardno = queryList.cardno
       }

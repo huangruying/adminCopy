@@ -321,7 +321,7 @@ export default {
       let data = {}
       var queryList = this.queryList
       if (queryList.orderNo) {
-        data.orderno = queryList.orderNo
+        data.orderNo = queryList.orderNo
       }
       if (queryList.phone) {
         data.phone = queryList.phone
